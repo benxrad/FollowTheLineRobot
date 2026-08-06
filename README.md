@@ -43,7 +43,7 @@ An Arduino-based robot that follows a dark line using five infrared sensors and 
 
 </table>
 
-<p align="center"><sub>Project images by Marcelo Rovai / MJRoBot. See the <a href="https://www.instructables.com/Line-Follower-Robot-PID-Control-Android-Setup/">original tutorial</a>.</sub></p>
+<p align="center"><sub>Credit to the schematics image by Marcelo Rovai / MJRoBot. See the <a href="https://www.instructables.com/Line-Follower-Robot-PID-Control-Android-Setup/"> tutorial</a>.</sub></p>
 
 ## How It Works
 
