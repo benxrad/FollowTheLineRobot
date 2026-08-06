@@ -7,8 +7,6 @@
 
 An Arduino-based robot that follows a dark line using five infrared sensors and PID control. Two continuous-rotation servos provide differential steering, while an optional Android interface communicates over Bluetooth for manual driving and real-time PID tuning.
 
-> This README is an original summary of Marcelo Rovai's [Line Follower Robot – PID Control – Android Setup](https://www.instructables.com/Line-Follower-Robot-PID-Control-Android-Setup/).
-
 
 
 ## Features
@@ -28,8 +26,12 @@ An Arduino-based robot that follows a dark line using five infrared sensors and 
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://content.instructables.com/F15/U8XG/IN4TTUL8/F15U8XGIN4TTUL8.png?frame=true&width=573&height=1024&fit=bounds" alt="Schematics" width="420"><br>
+      <img src="https://content.instructables.com/F15/U8XG/IN4TTUL8/F15U8XGIN4TTUL8.png?frame=true&width=573&height=1024&fit=bounds" alt="Schematics" width="50%"><br>
       <sub>Sample Schematics of the project</sub>
+    </td>
+        <td align="center" width="50%">
+      <img src="./src/assembled.png" alt="Schematics" width="420"><br>
+      <sub>Another design form, wider motor angle for quick direction adjustment.</sub>
     </td>
     </tr>
   <tr>
@@ -195,6 +197,9 @@ The Android interface speeds up tuning by sending new gains over Bluetooth witho
 - Bluetooth is optional; fixed gain values can be stored directly in the firmware.
 
 ## Reference and Credit
+
+> This README is an original summary of Marcelo Rovai's [Line Follower Robot](https://www.instructables.com/Line-Follower-Robot-PID-Control-Android-Setup/).
+
 
 Project concept and technical reference: Marcelo Rovai, [Line Follower Robot – PID Control – Android Setup](https://www.instructables.com/Line-Follower-Robot-PID-Control-Android-Setup/). The referenced project was published under GPLv3; verify the license of any source code or assets you reuse.
 
