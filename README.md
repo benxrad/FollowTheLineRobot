@@ -198,11 +198,9 @@ The Android interface speeds up tuning by sending new gains over Bluetooth witho
 
 ## Reference and Credit
 
-> This README is an original summary of Marcelo Rovai's [Line Follower Robot](https://www.instructables.com/Line-Follower-Robot-PID-Control-Android-Setup/).
 
-
-Project concept and technical reference: Marcelo Rovai, [Line Follower Robot – PID Control – Android Setup](https://www.instructables.com/Line-Follower-Robot-PID-Control-Android-Setup/). The referenced project was published under GPLv3; verify the license of any source code or assets you reuse.
+[Line Follower Robot – PID Control – Android Setup](https://www.instructables.com/Line-Follower-Robot-PID-Control-Android-Setup/). published under GPLv3;
 
 ## License
 
-If this repository contains code derived from the referenced GPLv3 project, distribute that code under the terms of the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html). Add a `LICENSE` file before publishing.
+[GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
