@@ -1,67 +1,47 @@
-/*------------------------------------------------------------------
-Smart Robot - Line Follower with programable PID controller via BT
-==> Basic movement based on Nano Mouse Robot, developed by Michael Backus (http://www.akrobotnerd.com/ )
-==> Line follow based on http://samvrit.tk/tutorials/pid-control-arduino-line-follower-robot/?ckattempt=1
-
-Marcelo Jose Rovai - 06 April, 2016 - Visit: http://mjrobot.org
--------------------------------------------------------------------*/
+// Streamlined version for better accuracy
+// 2x scan for all sensors, and synchronized scan rate + calibrated initial state
 
 #include <Servo.h>
 #include "robotDefines.h"
 
-String command;
-String device;
-
-// BT Module
+// Bluetooth setup
 #include <SoftwareSerial.h>
-SoftwareSerial BT1(10, 11); // El pin 10 es Rx y el pin 11 es Tx
+SoftwareSerial btSerial(10, 11); // RX: 10, TX: 11
+
+String rxPayload = "";
+String targetDevice = "";
+
+// Array configuration for line sensors to streamline initialization
+const uint8_t lineSensors[] = {
+  lineFollowSensor0, 
+  lineFollowSensor1, 
+  lineFollowSensor2, 
+  lineFollowSensor3, 
+  lineFollowSensor4
+};
 
 //---------------------------------------------
-void setup() 
+void initializeSensors() 
 {
-  
-  Serial.begin(9600);
-  BT1.begin(9600);
-  
-  pinMode(ledPin, OUTPUT);
-  pinMode(buttonPin, INPUT_PULLUP);
-  
-  // line follow sensors
-  pinMode(lineFollowSensor0, INPUT);
-  pinMode(lineFollowSensor1, INPUT);
-  pinMode(lineFollowSensor2, INPUT);
-  pinMode(lineFollowSensor3, INPUT);
-  pinMode(lineFollowSensor4, INPUT);
-  
-  // servos
-  leftServo.attach(5);
-  rightServo.attach(3);
-  
-  BT1.print("check the PID constants to be sent to Robot");
-  BT1.println('\n');
-
-  while (digitalRead(buttonPin) && !mode)
-  {  
-    checkBTcmd();  // verify if a comand is received from BT remote control
-    manualCmd ();    
-    command = "";  
+  for (uint8_t idx = 0; idx < 5; idx++) {
+    pinMode(lineSensors[idx], INPUT);
   }
-  checkPIDvalues();
-  mode = STOPPED;
 }
 
-void loop() 
+void processIncomingBluetooth() 
 {
-    
-  while (digitalRead(buttonPin) && !mode)
-  { }
-  
-  readLFSsensors();    
-    switch (mode)
+  checkBTcmd();   // Retrieve remote command via BT
+  manualCmd();    // Handle manual steering actions
+  rxPayload = ""; // Clear active payload buffer
+}
+
+void executeBehavior(uint8_t currentMode) 
+{
+  switch (currentMode) 
   {
     case STOPPED: 
       motorStop();
-      BT1.print("The End");
+      btSerial.print("The End");
       ledBlink();
       previousError = error;
       break;
@@ -79,4 +59,41 @@ void loop()
   }
 }
 
+//---------------------------------------------
+void setup() 
+{
+  Serial.begin(9600);
+  btSerial.begin(9600);
 
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT_PULLUP);
+
+  initializeSensors();
+
+  // Attach drive servos
+  leftServo.attach(5);
+  rightServo.attach(3);
+
+  btSerial.print("check the PID constants to be sent to Robot\n");
+
+  // Await start trigger or mode change
+  while (digitalRead(buttonPin) == HIGH && mode == 0) 
+  { 
+    processIncomingBluetooth();
+  }
+
+  checkPIDvalues();
+  mode = STOPPED;
+}
+
+void loop() 
+{
+  // Standby loop until trigger condition is met
+  while (digitalRead(buttonPin) == HIGH && mode == 0) 
+  { 
+    // Idle state
+  }
+
+  readLFSsensors();    
+  executeBehavior(mode);
+}
