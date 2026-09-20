@@ -37,10 +37,18 @@ void motorBwTime (unsigned int time)
 }
 
 //------------------------------------------------
+// void motorTurn(int direction, int degrees)
+// {
+//   leftServo.writeMicroseconds(1500 - iniMotorPower*direction);
+//   rightServo.writeMicroseconds(1500 - iniMotorPower*direction);
+//   delay (round(adjTurn*degrees+1));
+//   motorStop();
+// }
+
 void motorTurn(int direction, int degrees)
 {
-  leftServo.writeMicroseconds(1500 - iniMotorPower*direction);
-  rightServo.writeMicroseconds(1500 - iniMotorPower*direction);
+  leftServo.writeMicroseconds(1500 - (iniMotorPower*direction)*(90-degrees));
+  rightServo.writeMicroseconds(1500 - (iniMotorPower*direction)*(90-degrees));
   delay (round(adjTurn*degrees+1));
   motorStop();
 }
