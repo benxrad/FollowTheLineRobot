@@ -1,11 +1,11 @@
-# PID Line-Following Robot
+# Line-Following Robot
 
 ![Arduino](https://img.shields.io/badge/Arduino-Nano-00979D?logo=arduino&logoColor=white)
 ![Control](https://img.shields.io/badge/Control-PID-blue)
 ![Bluetooth](https://img.shields.io/badge/Bluetooth-HC--06-5C2D91?logo=bluetooth&logoColor=white)
 ![License](https://img.shields.io/badge/License-GPL--3.0-green)
 
-An Arduino-based robot that follows a dark line using five infrared sensors and PID control. Two continuous-rotation servos provide differential steering, while an optional Android interface communicates over Bluetooth for manual driving and real-time PID tuning.
+An Arduino-based robot that follows a dark line using five infrared sensors. Two continuous-rotation servos provide differential steering, while an optional Android interface communicates over Bluetooth for manual driving and real-time PID tuning.
 
 
 
@@ -194,7 +194,7 @@ The Android interface speeds up tuning by sending new gains over Bluetooth witho
 - Continuous-rotation servos mounted opposite each other require opposite pulse directions for forward motion.
 - Sensor spacing should allow both one-sensor and two-sensor line patterns.
 - Motor power, mechanical alignment, battery level, sensor height, and loop timing all affect the best PID gains.
-- Bluetooth is optional; fixed gain values can be stored directly in the firmware.
+- PID control, Bluetooth is optional; fixed gain values can be stored directly in the firmware.
 
 ## Reference and Credit
 
