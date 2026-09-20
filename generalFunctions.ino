@@ -9,6 +9,18 @@ void ledBlink(void)
    } 
 }
 
+void ledcountdown(bool st)
+{
+   if(st){
+      for (int i = 0; i<20; i++)
+         { 
+            digitalWrite (ledPin, HIGH);
+            delay (100);
+            digitalWrite (ledPin, LOW);
+            delay (100);
+         } 
+   }
+}
 //-----------------------------------------------------------------------------
 
  void checkBTcmd()  
